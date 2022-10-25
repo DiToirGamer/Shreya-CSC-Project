@@ -2,7 +2,7 @@ import mysql.connector
 db1=None
 def connect():
     global db1
-    db1=mysql.connector.connect(host="localhost",user="root",password="shreya06062005",database="covid")
+    db1=mysql.connector.connect(host="localhost",user="root",password="1234",database="covid")
 def showusers():
     c1=db1.cursor()
     c1.execute("select * from covid")
@@ -71,7 +71,7 @@ def addvaccination():
         db1.commit()
         print("Vaccination Record Added Successfully")
     elif d=="2":
-        q="update vaccination set d=%s where ad=%s"
+        q="update vaccination set dose=%s where ad=%s"
         val=(dt,ad)
         c2.execute(q,val)
         db1.commit()
@@ -115,41 +115,32 @@ def showduevaccine():
     for val in res:
         print(val[5],"t",val[1],"\t",val[0],"\t",val[2],"\t",val[3])
 
-    connect()
-    print("connected")
-    if login():
-       while True:
-           print("-"*50)
-           print("\t CHOOSE AN OPERATION")
-           print("-"*50)
-           print("Press1-Add a New Society Member")
-           print("Press2-Add a Vaccination Record")
-           print("Press3-Show all the Members")
-           print("Press4-Show all Vaccinated Members")
-           print("Press5-Show whose Vaccination is Due")
-           print("Press6-Show who are not at all Vaccinated")
-           print("Press7-Quit")
-           ch=int(input("Enter Your Choice:"))
-           if ch==1:
-               addmember()
-           elif ch==2:
-              addvaccination()
-           elif ch==3:
-              showmembers()
-           elif ch==4:
-              showvaccine()
-           elif ch==5:
-              showduevaccine()
-           elif ch==6:
-              shownotvaccined()
-           elif ch==7:
-              break           
 connect()
-showusers()
-login()
-addmember()
-showmembers()
-addvaccination()
-showvaccine()
-showduevaccine()
-shownotvaccined()
+print("connected")
+if login():
+   while True:
+      print("-"*50)
+      print("\t CHOOSE AN OPERATION")
+      print("-"*50)
+      print("Press1-Add a New Society Member")
+      print("Press2-Add a Vaccination Record")
+      print("Press3-Show all the Members")
+      print("Press4-Show all Vaccinated Members")
+      print("Press5-Show whose Vaccination is Due")
+      print("Press6-Show who are not at all Vaccinated")
+      print("Press7-Quit")
+      ch=int(input("Enter Your Choice:"))
+      if ch==1:
+         addmember()
+      elif ch==2:
+         addvaccination()
+      elif ch==3:
+         showmembers()
+      elif ch==4:
+         showvaccine()
+      elif ch==5:
+         showduevaccine()
+      elif ch==6:
+         shownotvaccined()
+      elif ch==7:
+         break           
